@@ -1,0 +1,168 @@
+@mixin nav-link-style {
+    font-family: 'DM Sans', sans-serif;
+    color: $color-secundario;
+    text-decoration: none;
+    transition: background 0.2s;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 6px;
+
+    &:hover {
+        color: $acento !important;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 3px;
+            background-color: $acento !important;
+            border-radius: 1px;
+
+        }
+    }
+
+    &.active {
+        font-weight: bold;
+        color: $color-texto;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 3px;
+            background-color: $color-texto;
+            border-radius: 1px;
+        }
+    }
+}
+
+@mixin nav-style {
+    background-color:
+        /* From https://css.glass */
+        rgba(237, 233, 248, 1);
+    border-radius: 50px;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid rgba(237, 233, 248, 1);
+
+    padding: 6px 20px;
+
+    ul {
+        margin-bottom: 0;
+        gap: 30px;
+    }
+
+    a {
+        @include nav-link-style;
+    }
+}
+
+@mixin logo-style {
+    font-family: 'DM Sans', sans-serif;
+    color: $acento;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: $color-cards;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding: 13px 20px 10px 25vh;
+
+
+    &:hover {
+        // hacer el texto brillar glow y el fondo más oscuro
+        background-color: $color-cards-oscuras;
+        color: lighten($color-texto, 10%);
+        transition: all 0.3s ease;
+    }
+}
+
+@mixin boton-primario {
+    background-color: #fff;
+    color: $color-texto;
+    border: none;
+    padding: 8px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 15px;
+
+    &:hover {
+        background-color: $acento;
+        color: #fff;
+    }
+
+    //inner shadow y outer shadow para dar efecto de profundidad
+    box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25),
+    inset 0px -2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+@mixin link-style {
+    color: $acento;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
+    font-weight: bold;
+
+    &:hover {
+        color: $color-texto;
+    }
+}
+
+@mixin tarjeta-proyecto {
+    .categoria {
+        position: absolute;
+        font-family: 'DM Sans', sans-serif;
+        color: #fff;
+        padding: 8px 20px;
+        background-color: $color-secundario;
+        border-radius: 50px;
+        top: 20px;
+        right: 20px;
+    }
+
+    h3 {
+        margin-bottom: 10px;
+    }
+
+    position: relative;
+
+    .texto-tarjeta-proyecto {
+        padding: 0px 10px 40px 20px;
+    }
+
+    background-color: $color-cards;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+    img {
+        //la imagen debe ocupar todo el ancho de la tarjeta ignorando el padding y tener una altura fija de 300px, con object-fit cover para que no se distorsione
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        padding-bottom: 20px;
+    }
+
+    .tags-tarjeta {
+        margin-bottom: 20px !important;
+        gap: 10px;
+        font-family: 'DM Sans', sans-serif;
+        color: $color-secundario;
+        li {
+            padding: 10px 20px;
+            border: 1px solid $color-texto;
+            border-radius: 50px;
+        }
+
+    }
+
+
+
+    box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+
+
+}

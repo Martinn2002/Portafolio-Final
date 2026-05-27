@@ -1,0 +1,61 @@
+// Colores
+
+$color-fondo: #FAF8FF;
+$color-cards: #EDE9F8;
+$color-cards-oscuras: #C4B8E8;
+$color-texto: #2E2458;
+$color-secundario: #6B5F99;
+$acento: #FF7700;
+
+//Tipografías
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'DM Serif Display', serif;
+    color: $color-texto;
+    letter-spacing: 1.5;
+
+    h1 {
+        font-size: 2.875rem;
+    }
+
+    h2 {
+        font-size: 2.625rem;
+    }
+
+    h3 {
+        font-size: 2.375rem;
+    }
+}
+
+p,
+.p-mediano,
+.p-pequeno {
+    font-family: 'DM Sans', sans-serif;
+    color: $color-secundario;
+
+
+}
+
+p {
+    font-size: 1.125rem !important;
+}
+
+.p-mediano, main a{
+    font-size: 1.375rem !important;
+}
+
+.p-pequeno,
+header a {
+    font-size: 1.125rem;
+}
+
+span{
+        font-size: 1.125rem;
+
+}
+

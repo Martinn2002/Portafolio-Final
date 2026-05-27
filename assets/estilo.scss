@@ -1,0 +1,101 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $color-fondo;
+}
+
+
+// ── HEADER ──────────────────────────────────────
+header {
+  padding: 1.25rem 0;
+  position: relative;
+
+  .logo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    a {
+      @include logo-style;
+    }
+  }
+
+  .container {
+    .header-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav {
+      @include nav-style;
+
+      .icono-idioma {
+        height: 22px;
+        border-radius: 3px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .btn-menu {
+      display: flex;
+    }
+
+    nav {
+      display: none;
+    }
+  }
+}
+
+// ── Main ──────────────────────────────────────
+
+main {
+  a {
+    @include link-style;
+  }
+
+  .fotomia-main {
+    width: 100%;
+    max-height: 400px;
+    border-radius: 15px;
+    box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.botones-hero {
+  gap: 1.875rem;
+}
+
+button {
+  @include boton-primario;
+}
+
+.seccion-proyectos {
+  margin-top: 20vh;
+}
+
+h2 {
+  margin-bottom: 40px;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: $acento;
+    margin-top: 4px;
+  }
+}
+
+.tarjeta-proyecto {
+  @include tarjeta-proyecto;
+}
