@@ -20,42 +20,87 @@ h6 {
     letter-spacing: 1.5;
 
     h1 {
-        font-size: 2.875rem;
+        font-size: 2.5rem;
     }
 
     h2 {
-        font-size: 2.625rem;
+        font-size: 2rem;
     }
 
     h3 {
-        font-size: 2.375rem;
+        font-size: 1.8rem;
     }
 }
 
 p,
 .p-mediano,
-.p-pequeno {
+.p-pequeno,
+.p-titulo {
     font-family: 'DM Sans', sans-serif;
     color: $color-secundario;
 
+}
 
+.p-titulo {
+    font-size: 1.5rem !important;
+    color: $color-texto;
 }
 
 p {
-    font-size: 1.125rem !important;
+    font-size: 1.1rem !important;
 }
 
-.p-mediano, main a{
-    font-size: 1.375rem !important;
+.p-mediano,
+main a {
+    font-size: 1rem !important;
+}
+
+main a {
+    color: $acento !important;
+
+    &:hover {
+        color: $color-texto !important;
+    }
 }
 
 .p-pequeno,
 header a {
-    font-size: 1.125rem;
+    font-size: 0.8rem;
 }
 
-span{
-        font-size: 1.125rem;
-
+.mt-5 {
+    margin-top: 20vh !important;
 }
 
+.mt-4 {
+    margin-top: 10vh !important;
+}
+
+//media queries para todo el tamaño de todas las fuentes
+@media (max-width: 1400px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    p,
+    a {
+        font-size: 1rem !important;
+    }
+
+    .p-titulo {
+        font-size: 1.2rem !important;
+    }
+
+    .p-mediano,
+    .p-pequeno {
+        font-size: 0.9rem !important;
+    }
+}

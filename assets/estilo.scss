@@ -83,6 +83,62 @@ button {
   margin-top: 20vh;
 }
 
+.container-tecnologias {
+  padding: 40px 0;
+
+  .ul-tecnologias {
+    list-style: none;
+    padding-left: 40px;
+    margin: 0;
+    position: relative;
+
+    // Línea vertical
+    &::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      bottom: 15px;
+      width: 2px;
+      background-color: #2f2a63;
+    }
+  }
+
+  li {
+    font-family: 'DM Sans', sans-serif;
+    color: $color-texto;
+    margin-bottom: 40px;
+    position: relative;
+
+    p {
+      color: $color-texto;
+
+      &.active {
+        color: $acento;
+        font-weight: bold;
+      }
+    }
+
+    &.active {
+      color: $acento;
+      font-weight: bold;
+
+      // Círculo naranja
+      &::before {
+        content: '';
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: $acento;
+        left: -39px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
 h2 {
   margin-bottom: 40px;
 
@@ -98,4 +154,25 @@ h2 {
 
 .tarjeta-proyecto {
   @include tarjeta-proyecto;
+}
+
+.background-tecnologias {
+  background: url('../assets/img/fondo-tecnologias.png');
+  width: 100vw;
+}
+
+.tarjeta-tecnologia {
+  @include tarjetas-tecnologias;
+}
+
+.tarjeta-contacto {
+  @include tarjeta-contacto;
+}
+
+.campo-contacto-row {
+  margin-top: 40px;
+}
+
+.footer-texto {
+  @include footer-style;
 }
