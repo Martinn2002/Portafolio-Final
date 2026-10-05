@@ -729,3 +729,175 @@ button {
 .paginador button {
   min-width: 42px;
 }
+
+
+// ── RESPONSIVE ─────────────────────────────────────
+html,
+body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 992px) {
+  header .logo a {
+    padding-left: 2rem;
+  }
+
+  .foto-contenedor {
+    margin-top: 3rem;
+  }
+
+  .borde-naranja {
+    right: -24px;
+    bottom: 24px;
+  }
+
+  .puntos {
+    left: -30px;
+  }
+
+  .tarjeta-contacto {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 0.9rem 0;
+    min-height: 66px;
+  }
+
+  header .logo {
+    left: 0;
+  }
+
+  header .logo a {
+    padding: 10px 18px 9px 1rem;
+    font-size: 0.9rem;
+  }
+
+  header .container .header-inner {
+    min-height: 46px;
+  }
+
+  header .btn-menu {
+    right: 0;
+  }
+
+  header .container .header-inner nav {
+    z-index: 4;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  header .container .header-inner nav ul {
+    align-items: stretch;
+  }
+
+  header .container .header-inner nav li {
+    width: 100%;
+  }
+
+  header .container .header-inner nav a {
+    display: block;
+    padding: 0.4rem 0;
+  }
+
+  main > .container,
+  .seccion-contacto .container,
+  footer .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.65rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .botones-hero {
+    gap: 0.75rem;
+  }
+
+  .botones-hero li,
+  .botones-hero a,
+  .botones-hero button {
+    width: 100%;
+  }
+
+  .foto-contenedor {
+    margin-top: 3.5rem;
+    padding: 0 1rem;
+  }
+
+  .puntos {
+    left: -5px;
+    top: -28px;
+    width: 90px;
+    height: 130px;
+  }
+
+  .borde-naranja {
+    right: -2px;
+    bottom: -18px;
+  }
+
+  .seccion-proyectos {
+    margin-top: 4rem;
+  }
+
+  .seccion-proyectos > .col-12:first-child {
+    align-items: flex-start !important;
+    gap: 0.75rem;
+    flex-direction: column;
+  }
+
+  .seccion-proyectos > .col-12:first-child a {
+    margin-bottom: 1rem;
+  }
+
+  .background-tecnologias {
+    width: 100%;
+  }
+
+  .container-tecnologias {
+    padding: 2.5rem 1rem;
+  }
+
+  .container-tecnologias .ul-tecnologias {
+    padding-left: 2.5rem;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 0;
+    margin-bottom: 2rem;
+  }
+
+  .container-tecnologias .ul-tecnologias li {
+    margin-bottom: 1.25rem;
+  }
+
+  .paneles-tecnologia-wrapper {
+    min-height: 12rem;
+  }
+
+  .tarjeta-contacto {
+    padding: 1.5rem 1rem;
+  }
+
+  .redes-contacto {
+    gap: 1.25rem !important;
+    flex-wrap: wrap;
+  }
+
+  .footer-texto {
+    text-align: center;
+    white-space: normal;
+  }
+
+  .paginador {
+    margin-top: 1rem;
+  }
+}

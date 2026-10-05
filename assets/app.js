@@ -97,13 +97,23 @@ const renderizarTecnologias = async () => {
             panel.innerHTML = categoria.items.map((tec) => `<div class="col-12 col-sm-6 col-md-4 mb-4 d-flex"><article class="tarjeta-tecnologia"><p class="p-titulo">${escapeHTML(tec.nombre)}</p><p class="p-mediano">${escapeHTML(tec.descripcion)}</p><div class="barra-progreso-container"><div class="barra-progreso" style="width:${Math.max(0, Math.min(100, Number(tec.porcentaje) || 0))}%"></div></div><ul class="list-unstyled d-flex mb-0 justify-content-between"><li class="p-pequeno">Dominio</li><li class="p-pequeno">${tec.porcentaje}%</li></ul></article></div>`).join('');
             paneles.appendChild(panel);
         });
+        const indicador = lista.querySelector('.indicador-tecnologia');
         const items = [...lista.querySelectorAll('li')];
+        const moverIndicador = (item) => {
+            if (!indicador || !item) return;
+            indicador.style.top = `${item.offsetTop + (item.offsetHeight / 2)}px`;
+        };
+        requestAnimationFrame(() => moverIndicador(items[0]));
         items.forEach((item) => item.addEventListener('click', () => {
             items.forEach((elemento) => { elemento.classList.remove('active'); elemento.querySelector('p').classList.remove('active'); });
             item.classList.add('active');
             item.querySelector('p').classList.add('active');
+            moverIndicador(item);
             paneles.querySelectorAll('.panel-tecnologias').forEach((panel) => { panel.hidden = panel.dataset.panel !== item.dataset.categoria; });
         }));
+        window.addEventListener('resize', () => {
+            moverIndicador(lista.querySelector('li.active'));
+        });
     } catch (error) {
         contenedor.querySelector('.paneles-tecnologia-wrapper').innerHTML = '<p class="p-mediano">No pudimos cargar las tecnologías.</p>';
         console.error(error);
