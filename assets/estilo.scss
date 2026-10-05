@@ -709,3 +709,23 @@ button {
   /* o el alto que prefieras */
   object-fit: cover;
 }
+
+
+// ── MIGRACIÓN ESTÁTICA ─────────────────────────────
+.enlace-tarjeta-proyecto {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+.panel-tecnologias[hidden] {
+  display: none !important;
+}
+
+.paginador button {
+  min-width: 42px;
+}

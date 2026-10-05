@@ -1,0 +1,31 @@
+{
+  "categorias": [
+    {
+      "nombre": "Lenguajes",
+      "items": [
+        { "nombre": "HTML", "descripcion": "Define la estructura base de una página web.", "porcentaje": 90 },
+        { "nombre": "CSS", "descripcion": "Se encarga del diseño visual de un sitio web.", "porcentaje": 90 },
+        { "nombre": "JavaScript", "descripcion": "Añade interactividad y lógica a un sitio web.", "porcentaje": 85 }
+      ]
+    },
+    {
+      "nombre": "Frameworks",
+      "items": [
+        { "nombre": "Bootstrap", "descripcion": "Sistema de componentes para construir interfaces responsive.", "porcentaje": 85 }
+      ]
+    },
+    {
+      "nombre": "CMS",
+      "items": [
+        { "nombre": "WordPress", "descripcion": "Plataforma para gestionar y publicar contenido web.", "porcentaje": 75 }
+      ]
+    },
+    {
+      "nombre": "Herramientas",
+      "items": [
+        { "nombre": "Git", "descripcion": "Control de versiones para mantener el historial del código.", "porcentaje": 80 },
+        { "nombre": "Figma", "descripcion": "Herramienta para diseñar y prototipar interfaces.", "porcentaje": 80 }
+      ]
+    }
+  ]
+}

@@ -1049,3 +1049,20 @@ button.active {
   -o-object-fit: cover;
      object-fit: cover;
 }/*# sourceMappingURL=estilo.css.map */
+
+
+/* Migración estática: tarjetas y paneles cargados desde JSON */
+.enlace-tarjeta-proyecto {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.enlace-tarjeta-proyecto:hover {
+  color: inherit;
+}
+.panel-tecnologias[hidden] {
+  display: none !important;
+}
+.paginador button {
+  min-width: 42px;
+}

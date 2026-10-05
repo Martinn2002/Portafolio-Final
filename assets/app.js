@@ -1,59 +1,137 @@
-const proyectosContainer = document.querySelector('#lista-proyectos');
-const proyectosStatus = document.querySelector('#proyectos-status');
+const escapeHTML = (value = '') => String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' }[char]));
+const iconArrow = '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" /></svg>';
 
-const crearTarjetaProyecto = (proyecto) => {
-    const tecnologias = proyecto.tecnologias
-        .map((tecnologia) => `<li><span class="p-pequeno">${tecnologia}</span></li>`)
-        .join('');
-
-    return `
-        <article class="col-md-4">
-            <div class="tarjeta-proyecto h-100">
-                <div class="imagen-tarjeta-proyecto">
-                    <span class="categoria">${proyecto.categoria}</span>
-                    <img src="${proyecto.imagen}" alt="${proyecto.imagenAlt}" loading="lazy">
-                </div>
-                <div class="texto-tarjeta-proyecto">
-                    <h3>${proyecto.titulo}</h3>
-                    <p class="p-pequeno">${proyecto.descripcion}</p>
-                    <ul class="tags-tarjeta list-unstyled d-flex mb-0 align-items-center">
-                        ${tecnologias}
-                    </ul>
-                    <div class="link-flecha d-flex">
-                        <a class="p-mediano" href="${proyecto.url}">
-                            ${proyecto.urlTexto}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </article>
-    `;
+const cargarJSON = async (ruta) => {
+    const respuesta = await fetch(ruta);
+    if (!respuesta.ok) throw new Error(`No se pudo cargar ${ruta}`);
+    return respuesta.json();
 };
 
-const cargarProyectos = async () => {
+const crearTarjetaProyecto = (proyecto) => `
+    <div class="col-12 col-sm-6 col-md-4 mb-4">
+        <a class="enlace-tarjeta-proyecto" href="proyecto.html?id=${encodeURIComponent(proyecto.id)}">
+            <article class="tarjeta-proyecto">
+                <div class="imagen-tarjeta-proyecto">
+                    <span class="categoria">${escapeHTML(proyecto.categoria)}</span>
+                    <img src="${escapeHTML(proyecto.imagen)}" alt="${escapeHTML(proyecto.imagenAlt || proyecto.titulo)}" loading="lazy">
+                </div>
+                <div class="texto-tarjeta-proyecto">
+                    <h3>${escapeHTML(proyecto.titulo)}</h3>
+                    <p>${escapeHTML(proyecto.descripcion)}</p>
+                    <ul class="tags-tarjeta list-unstyled d-flex flex-wrap mb-0 align-items-center">
+                        ${(proyecto.tags || []).map((tag) => `<li><span class="p-pequeno">${escapeHTML(tag)}</span></li>`).join('')}
+                    </ul>
+                    <div class="link-flecha d-flex"><span class="p-mediano boton-detalle">Detalles ${iconArrow}</span></div>
+                </div>
+            </article>
+        </a>
+    </div>`;
+
+const mostrarError = (elemento, mensaje) => {
+    if (elemento) elemento.innerHTML = `<div class="col-12"><p class="p-mediano">${mensaje}</p></div>`;
+};
+
+const renderizarProyectos = async () => {
+    const contenedor = document.querySelector('[data-proyectos]');
+    if (!contenedor) return;
     try {
-        const respuesta = await fetch('data/proyectos.json');
-        if (!respuesta.ok) {
-            throw new Error(`No se pudo cargar el JSON (${respuesta.status})`);
-        }
+        const datos = await cargarJSON('data/proyectos.json');
+        const proyectos = datos.proyectos || [];
+        const esListado = contenedor.id === 'contenedor-proyectos';
+        let categoriaActual = 'Todos';
+        let paginaActual = 1;
+        const porPagina = 6;
+        const botones = [...document.querySelectorAll('.filtros-proyectos button')];
+        const paginador = document.querySelector('#paginador-proyectos');
 
-        const datos = await respuesta.json();
-        const proyectos = Array.isArray(datos) ? datos : datos.proyectos;
+        const pintar = () => {
+            const filtrados = categoriaActual === 'Todos' ? proyectos : proyectos.filter((proyecto) => proyecto.categoria === categoriaActual);
+            const totalPaginas = Math.max(1, Math.ceil(filtrados.length / porPagina));
+            paginaActual = Math.min(paginaActual, totalPaginas);
+            const visibles = esListado ? filtrados.slice((paginaActual - 1) * porPagina, paginaActual * porPagina) : filtrados.slice(0, 3);
+            contenedor.innerHTML = visibles.length ? visibles.map(crearTarjetaProyecto).join('') : '<div class="col-12"><p>No hay proyectos en esta categoría aún.</p></div>';
+            if (paginador) {
+                paginador.querySelector('#numero-pagina-actual').textContent = paginaActual;
+                paginador.querySelector('[data-direccion="anterior"]').classList.toggle('inactive', paginaActual === 1);
+                paginador.querySelector('[data-direccion="siguiente"]').classList.toggle('inactive', paginaActual >= totalPaginas);
+            }
+        };
 
-        if (!Array.isArray(proyectos)) {
-            throw new Error('El JSON no contiene un arreglo de proyectos');
-        }
-
-        proyectosContainer.innerHTML = proyectos.map(crearTarjetaProyecto).join('');
-        proyectosStatus.remove();
+        botones.forEach((boton) => boton.addEventListener('click', () => {
+            botones.forEach((item) => item.classList.remove('active'));
+            boton.classList.add('active');
+            categoriaActual = boton.dataset.categoria;
+            paginaActual = 1;
+            pintar();
+        }));
+        paginador?.querySelectorAll('[data-direccion]').forEach((flecha) => flecha.addEventListener('click', () => {
+            if (flecha.classList.contains('inactive')) return;
+            paginaActual += flecha.dataset.direccion === 'siguiente' ? 1 : -1;
+            pintar();
+        }));
+        pintar();
     } catch (error) {
-        proyectosStatus.textContent = 'No pudimos cargar los proyectos. Revisa el archivo data/proyectos.json.';
-        proyectosStatus.classList.add('error-proyectos');
+        mostrarError(contenedor, 'No pudimos cargar los proyectos. Revisa data/proyectos.json.');
         console.error(error);
     }
 };
 
-cargarProyectos();
+const renderizarTecnologias = async () => {
+    const contenedor = document.querySelector('[data-tecnologias]');
+    if (!contenedor) return;
+    try {
+        const datos = await cargarJSON('data/tecnologias.json');
+        const categorias = datos.categorias || [];
+        const lista = contenedor.querySelector('.ul-tecnologias');
+        const paneles = contenedor.querySelector('.paneles-tecnologia-wrapper');
+        categorias.forEach((categoria, indice) => {
+            const boton = document.createElement('li');
+            boton.dataset.categoria = categoria.nombre;
+            boton.className = indice === 0 ? 'active' : '';
+            boton.innerHTML = `<p class="${indice === 0 ? 'active' : ''}">${escapeHTML(categoria.nombre)}</p>`;
+            lista.appendChild(boton);
+            const panel = document.createElement('div');
+            panel.className = 'panel-tecnologias row';
+            panel.dataset.panel = categoria.nombre;
+            panel.hidden = indice !== 0;
+            panel.innerHTML = categoria.items.map((tec) => `<div class="col-12 col-sm-6 col-md-4 mb-4 d-flex"><article class="tarjeta-tecnologia"><p class="p-titulo">${escapeHTML(tec.nombre)}</p><p class="p-mediano">${escapeHTML(tec.descripcion)}</p><div class="barra-progreso-container"><div class="barra-progreso" style="width:${Math.max(0, Math.min(100, Number(tec.porcentaje) || 0))}%"></div></div><ul class="list-unstyled d-flex mb-0 justify-content-between"><li class="p-pequeno">Dominio</li><li class="p-pequeno">${tec.porcentaje}%</li></ul></article></div>`).join('');
+            paneles.appendChild(panel);
+        });
+        const items = [...lista.querySelectorAll('li')];
+        items.forEach((item) => item.addEventListener('click', () => {
+            items.forEach((elemento) => { elemento.classList.remove('active'); elemento.querySelector('p').classList.remove('active'); });
+            item.classList.add('active');
+            item.querySelector('p').classList.add('active');
+            paneles.querySelectorAll('.panel-tecnologias').forEach((panel) => { panel.hidden = panel.dataset.panel !== item.dataset.categoria; });
+        }));
+    } catch (error) {
+        contenedor.querySelector('.paneles-tecnologia-wrapper').innerHTML = '<p class="p-mediano">No pudimos cargar las tecnologías.</p>';
+        console.error(error);
+    }
+};
+
+const renderizarDetalle = async () => {
+    const contenedor = document.querySelector('[data-detalle-proyecto]');
+    if (!contenedor) return;
+    try {
+        const datos = await cargarJSON('data/proyectos.json');
+        const id = new URLSearchParams(window.location.search).get('id');
+        const proyecto = (datos.proyectos || []).find((item) => item.id === id) || datos.proyectos?.[0];
+        if (!proyecto) throw new Error('No hay proyectos disponibles');
+        document.title = `${proyecto.titulo} · Portafolio`;
+        const labels = proyecto.categoria === 'Diseño / Rediseño' ? { problemas: 'Problemas detectados', investigacion: 'Auditoría visual', desafios: 'Decisiones de diseño' } : { problemas: 'Problemas', investigacion: 'Investigación', desafios: 'Desafíos y Soluciones' };
+        contenedor.innerHTML = `<div class="row"><div class="col-md-5"><a href="proyectos.html" class="d-flex align-items-center gap-2 mb-4">← Volver a proyectos</a><h1>${escapeHTML(proyecto.titulo)}</h1><ul class="tags-tarjeta list-unstyled d-flex flex-wrap align-items-center">${(proyecto.tags || []).map((tag) => `<li><span class="p-pequeno">${escapeHTML(tag)}</span></li>`).join('')}</ul><p>${escapeHTML(proyecto.descripcion)}</p><ul class="botones-hero list-unstyled d-flex flex-wrap align-items-center"><li><a href="${escapeHTML(proyecto.urlSitio || '#')}" target="_blank" rel="noopener"><button>Ver sitio</button></a></li><li><a href="${escapeHTML(proyecto.urlCodigo || '#')}" target="_blank" rel="noopener"><button>Ver código</button></a></li></ul></div><div class="col-md-7"><img class="foto-main-proyecto w-100" src="${escapeHTML(proyecto.imagen)}" alt="${escapeHTML(proyecto.imagenAlt || proyecto.titulo)}"></div></div><div class="row mt-4"><div class="col-md-4"><h2>Contexto</h2><p>${escapeHTML(proyecto.contexto)}</p></div><div class="col-md-8"><div class="row">${[['Público objetivo', proyecto.publicoObjetivo], ['Objetivo del proyecto', proyecto.objetivoProyecto], ['Duración', proyecto.duracion], ['Rol', proyecto.rol]].map(([titulo, texto]) => `<div class="col-md-6 mb-3"><div class="tarjeta-intereses"><div class="texto-tarjeta-intereses text-center"><p class="subtitulo">${titulo}</p><p class="p-mediano text-start">${escapeHTML(texto)}</p></div></div></div>`).join('')}</div></div></div><div class="row mt-4"><h2>${labels.problemas}</h2><p>${proyecto.problemas?.length ? proyecto.problemas.map((item) => `${escapeHTML(item.titulo)}: ${escapeHTML(item.texto)}`).join(' · ') : 'Este contenido se puede completar desde data/proyectos.json.'}</p></div><div class="row mt-4"><h2>${labels.investigacion}</h2><p>${proyecto.investigacion?.length ? proyecto.investigacion.map((item) => `${escapeHTML(item.titulo)}: ${escapeHTML(item.texto)}`).join(' · ') : 'Este contenido se puede completar desde data/proyectos.json.'}</p></div><div class="row mt-4"><h2>${labels.desafios}</h2><p>${proyecto.desafios?.length ? proyecto.desafios.map((item) => `${escapeHTML(item.problema)} → ${escapeHTML(item.solucion)}`).join(' · ') : 'Este contenido se puede completar desde data/proyectos.json.'}</p></div>`;
+    } catch (error) {
+        contenedor.innerHTML = '<p>No pudimos cargar este proyecto. Revisa data/proyectos.json.</p>';
+        console.error(error);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarProyectos();
+    renderizarTecnologias();
+    renderizarDetalle();
+    const btnMenu = document.querySelector('.btn-menu');
+    const nav = document.querySelector('.header-inner nav');
+    btnMenu?.addEventListener('click', () => { const abierto = nav.classList.toggle('abierto'); btnMenu.classList.toggle('abierto', abierto); btnMenu.setAttribute('aria-expanded', abierto); });
+});

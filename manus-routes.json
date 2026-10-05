@@ -1,8 +1,8 @@
 {
   "routes": [
-    {
-      "path": "/",
-      "title": "Portafolio de Martín Pérez"
-    }
+    { "path": "/", "title": "Portafolio de Martín Pérez" },
+    { "path": "/proyectos.html", "title": "Proyectos · Martín Pérez" },
+    { "path": "/sobre-mi.html", "title": "Sobre mí · Martín Pérez" },
+    { "path": "/proyecto.html", "title": "Detalle de proyecto · Martín Pérez" }
   ]
 }
