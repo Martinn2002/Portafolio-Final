@@ -1,0 +1,37 @@
+{
+  "proyectos": [
+    {
+      "id": "sitio-corporativo",
+      "titulo": "Sitio corporativo",
+      "categoria": "Desarrollo web",
+      "descripcion": "Sitio web responsive pensado para presentar una marca con claridad y una navegación simple.",
+      "imagen": "https://picsum.photos/id/180/900/600",
+      "imagenAlt": "Escritorio con computadora portátil y cuaderno",
+      "tecnologias": ["HTML", "CSS", "JavaScript"],
+      "url": "#",
+      "urlTexto": "Ver proyecto"
+    },
+    {
+      "id": "landing-page",
+      "titulo": "Landing page",
+      "categoria": "Diseño UX/UI",
+      "descripcion": "Landing page enfocada en conversión, con jerarquía visual y componentes reutilizables.",
+      "imagen": "https://picsum.photos/id/48/900/600",
+      "imagenAlt": "Espacio de trabajo con laptop y teléfono móvil",
+      "tecnologias": ["Figma", "Bootstrap", "JavaScript"],
+      "url": "#",
+      "urlTexto": "Ver proyecto"
+    },
+    {
+      "id": "proyecto-cms",
+      "titulo": "Proyecto con CMS",
+      "categoria": "CMS",
+      "descripcion": "Experiencia de contenido preparada para que un equipo pueda actualizarla sin tocar el código.",
+      "imagen": "https://picsum.photos/id/3/900/600",
+      "imagenAlt": "Computadora portátil sobre un escritorio",
+      "tecnologias": ["WordPress", "PHP", "CSS"],
+      "url": "#",
+      "urlTexto": "Ver proyecto"
+    }
+  ]
+}
