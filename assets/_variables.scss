@@ -51,21 +51,23 @@ p {
 }
 
 .p-mediano,
-main a {
+main a, .boton-detalle {
     font-size: 1rem !important;
 }
 
-main a {
+main a, .boton-detalle   {
     color: $acento !important;
-
+    font-weight: bold;
     &:hover {
         color: $color-texto !important;
     }
 }
 
+
+
 .p-pequeno,
 header a {
-    font-size: 0.8rem;
+    font-size: 0.8rem !important;
 }
 
 .mt-5 {
@@ -79,15 +81,15 @@ header a {
 //media queries para todo el tamaño de todas las fuentes
 @media (max-width: 1400px) {
     h1 {
-        font-size: 2rem;
+        font-size: 2rem !important;
     }
 
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.5rem !important;
     }
 
     h3 {
-        font-size: 1.2rem;
+        font-size: 1.2rem !important;
     }
 
     p,

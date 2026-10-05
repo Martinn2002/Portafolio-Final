@@ -21,6 +21,7 @@ header {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 3;
 
     a {
       @include logo-style;
@@ -32,6 +33,7 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
     nav {
@@ -45,13 +47,74 @@ header {
     }
   }
 
+  .btn-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: $color-secundario;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    &.abierto {
+      span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+  }
+
   @media (max-width: 768px) {
+    .logo a {
+      padding: 13px 20px 10px 25px;
+      font-size: 0.9rem;
+    }
+
     .btn-menu {
       display: flex;
     }
 
-    nav {
+    .container .header-inner nav {
       display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      right: 0;
+      width: 90%;
+      margin: 0 auto;
+
+      ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      &.abierto {
+        display: block;
+      }
     }
   }
 }
@@ -61,12 +124,21 @@ header {
 main {
   a {
     @include link-style;
+
+  }
+
+  p,
+  span {
+    font-weight: 400;
   }
 
   .fotomia-main {
     width: 100%;
     max-height: 400px;
     border-radius: 15px;
+
+    object-fit: cover;
+
     box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
   }
 }
@@ -80,7 +152,7 @@ button {
 }
 
 .seccion-proyectos {
-  margin-top: 20vh;
+  margin-top: 20px;
 }
 
 .container-tecnologias {
@@ -102,6 +174,19 @@ button {
       width: 2px;
       background-color: #2f2a63;
     }
+
+    // Círculo naranja — ahora es UN solo elemento que se mueve
+    .indicador-tecnologia {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: $acento;
+      left: 2px; // ajustado porque ya no está dentro de un li con padding distinto
+      transform: translateY(-50%);
+      transition: top 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+      z-index: 1;
+    }
   }
 
   li {
@@ -109,9 +194,12 @@ button {
     color: $color-texto;
     margin-bottom: 40px;
     position: relative;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
 
     p {
       color: $color-texto;
+      transition: color 0.3s ease;
 
       &.active {
         color: $acento;
@@ -122,19 +210,6 @@ button {
     &.active {
       color: $acento;
       font-weight: bold;
-
-      // Círculo naranja
-      &::before {
-        content: '';
-        position: absolute;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background-color: $acento;
-        left: -39px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
     }
   }
 }
@@ -149,6 +224,18 @@ h2 {
     height: 3px;
     background-color: $acento;
     margin-top: 4px;
+  }
+}
+
+.h2-centrado {
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: $acento;
+    margin-top: 4px;
+    margin-left: 44%;
   }
 }
 
@@ -175,4 +262,450 @@ h2 {
 
 .footer-texto {
   @include footer-style;
+}
+
+button {
+  &.active {
+    background-color: $acento;
+    color: #fff;
+  }
+}
+
+.active {
+  color: $acento;
+}
+
+.inactive {
+  color: grey;
+}
+
+#tecnologias,
+#contacto,
+#Contexto,
+#Desafios,
+#Problemas,
+#Investigacion {
+  /* Empuja el freno del scroll 25% antes de llegar a la sección */
+  scroll-margin-top: 25vh;
+}
+
+.subtitulo {
+  font-family: 'DM Serif Display', serif;
+  color: $color-texto;
+}
+
+.icono-intereses {
+  position: absolute !important;
+  bottom: 13px !important;
+  right: 13px !important;
+  z-index: -1;
+}
+
+.tags-tarjeta {
+  margin-bottom: 20px !important;
+  gap: 10px;
+  font-family: 'DM Sans', sans-serif;
+  color: $color-secundario;
+
+  li {
+    padding: 2px 10px;
+    border: 1px solid $color-texto;
+    border-radius: 50px;
+  }
+}
+
+.foto-main-proyecto {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  // la foto recortada empieza desde arriba
+  object-position: top;
+}
+
+.tarjeta-intereses {
+  @include tarjeta-intereses;
+}
+
+.numero-problema {
+  background-color: $color-texto;
+  color: #fff;
+  padding: 1px 8px;
+  border-radius: 100%;
+
+}
+
+.problemas-slider {
+  padding: 1rem 3rem;
+}
+
+.swiper-slide {
+  height: auto;
+}
+
+.tarjeta-proyecto {
+  height: 100%;
+}
+
+.swiper-button-prev {
+  margin-left: 15vh !important;
+  color: $acento !important;
+}
+
+.swiper-button-next {
+  margin-right: 15vh !important;
+  color: $acento !important;
+}
+
+.galeria-proyecto-slider {
+  padding: 3rem 0;
+}
+
+.galeria-proyecto-slider .swiper-slide {
+  width: 350px;
+  transition: .4s ease;
+}
+
+.galeria-proyecto-slider .swiper-slide img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
+}
+
+/* Oscurece las laterales */
+.galeria-proyecto-slider .swiper-slide:not(.swiper-slide-active) {
+
+
+  transform: scale(.8);
+
+}
+
+/* Activa */
+.galeria-proyecto-slider .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1.25);
+  z-index: 1;
+}
+
+.galeria-proyecto-slider .swiper-slide::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+
+}
+
+
+
+.swiper-pagination-bullet {
+  background: $color-cards-oscuras !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: $acento !important;
+}
+
+.icono-problemas {
+  height: 15vh;
+  width: auto;
+}
+
+.links-contenidos {
+  a {
+    font-size: 0.9rem !important;
+  }
+
+}
+
+/* Contenedor relativo para anclar los adornos */
+.foto-contenedor {
+  position: relative;
+}
+
+.fotomia-main {
+  width: 100%;
+  max-height: 400px;
+  border-radius: 15px;
+  box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+  /* La foto queda encima de los adornos */
+}
+
+/* Borde naranja: esquina inferior derecha */
+.borde-naranja {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 5px solid $acento;
+  bottom: 50px;
+  right: -80px;
+  z-index: 0;
+}
+
+/* Grilla de puntos: esquina superior izquierda */
+.puntos {
+  position: absolute;
+  width: 120px;
+  height: 185px;
+  top: -20px;
+  left: -145px;
+  z-index: 0;
+  background-image: radial-gradient(circle, #6b5bac 1.5px, transparent 1.5px);
+  background-size: 12px 12px;
+  z-index: 1;
+}
+
+.decoracion-circulo {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle,
+      rgba(255, 145, 0, 0.575) 0%,
+      rgba(255, 145, 0, .10) 50%,
+      transparent 51%);
+
+  top: 20px;
+  right: 32px;
+
+  animation: flotar 8s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes flotar {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-30px) scale(1.05);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.decoracion-luz {
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  right: 20px;
+  top: 130px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 180, 100, .25);
+
+  filter: blur(90px);
+
+  animation: respirar 5s ease-in-out infinite;
+}
+
+@keyframes respirar {
+
+  0%,
+  100% {
+    opacity: .4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: .8;
+    transform: scale(1.2);
+  }
+}
+
+.decoracion-puntos {
+  width: 120px;
+  height: 185px;
+
+
+  background-image: radial-gradient(circle, #6b5bac 1.5px, transparent 1.5px);
+
+  background-size: 12px 12px;
+
+  position: absolute;
+  top: 100px;
+  right: 42%;
+
+  animation: puntos 6s ease-in-out infinite;
+}
+
+.ul-tecnologias {
+  li:hover {
+
+    cursor: pointer;
+
+  }
+}
+
+/* Indicar que las imágenes son clickeables (lightbox) */
+.lightbox-img {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.lightbox-img img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+  object-position: top;
+  /* la imagen se recorta mostrando siempre la parte de arriba */
+}
+
+.lightbox-img:hover img {
+  transform: scale(1.03);
+  filter: brightness(0.85);
+}
+
+/* Ícono de lupa al hacer hover */
+.lightbox-img::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23000' viewBox='0 0 16 16'%3e%3cpath d='M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0'/%3e%3cpath d='M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.lightbox-img:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+
+
+
+.ul-tecnologias li {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.ul-tecnologias li:hover p {
+  color: $acento;
+}
+
+.ul-tecnologias li.active p {
+  opacity: 1;
+}
+
+.paneles-tecnologia-wrapper {
+  position: relative;
+  display: grid;
+  transition: height 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+  overflow: hidden;
+}
+
+.panel-tecnologias {
+  grid-area: 1 / 1;
+  width: 100%;
+  align-self: start; // <- esto evita que se estire a la altura del más grande
+}
+
+.trp-language-switcher {
+  margin-top: 1.25rem;
+  border-radius: 50px !important;
+
+  span {
+    font-family: 'DM Sans', sans-serif;
+    color: $color-secundario;
+    font-weight: bold;
+
+    &:hover {
+      color: $acento !important;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 3px;
+        background-color: $acento !important;
+        border-radius: 1px;
+
+      }
+    }
+
+    &.active {
+      font-weight: bold;
+      color: $color-texto;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 3px;
+        background-color: $color-texto;
+        border-radius: 1px;
+      }
+    }
+  }
+
+  .trp-language-item {
+    padding: 1px 16px !important;
+
+  }
+
+  .trp-switcher-dropdown-list {
+    padding-top: 20px;
+  }
+}
+
+.problemas-slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+.problemas-slider .swiper-wrapper {
+  align-items: center;
+}
+
+.problemas-slider .swiper-slide {
+  height: auto;
+  box-sizing: border-box;
+}
+
+.tarjeta-proyecto {
+  height: 100%;
+}
+
+.swiper-slide:not(.slide-con-imagen) .tarjeta-proyecto {
+  max-height: 1000px;
+}
+
+.lightbox-img {
+  img {
+    padding-bottom: 0px;
+  }
+}
+
+.orden-imagen {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  width: 100%;
+  height: 220px;
+  /* o el alto que prefieras */
+  object-fit: cover;
 }
