@@ -1,64 +1,130 @@
 {
   "proyectos": [
     {
-      "id": "sitio-corporativo",
-      "titulo": "Sitio corporativo",
-      "categoria": "CMS",
-      "descripcion": "Sitio web responsive pensado para presentar una marca con claridad y una navegación simple.",
-      "imagen": "assets/img/Statspurs.jpg",
-      "imagenAlt": "Vista previa del sitio corporativo",
-      "tags": ["HTML", "CSS", "WordPress"],
-      "urlSitio": "#",
-      "urlCodigo": "#",
-      "contexto": "Proyecto de práctica para organizar la presencia digital de una marca.",
-      "publicoObjetivo": "Personas interesadas en conocer la marca y sus servicios.",
-      "objetivoProyecto": "Comunicar la propuesta de valor de forma directa.",
-      "duracion": "Por definir",
-      "rol": "Diseño y desarrollo web",
-      "problemas": [],
-      "investigacion": [],
-      "desafios": [],
-      "galeria": []
-    },
-    {
-      "id": "landing-page",
-      "titulo": "Landing page",
+      "id": "rediseno-de-papeleria-divertida",
+      "titulo": "Rediseño de Papelería Divertida",
       "categoria": "Diseño / Rediseño",
-      "descripcion": "Landing page enfocada en conversión, con jerarquía visual y componentes reutilizables.",
-      "imagen": "assets/img/Statspurs copy.jpg",
-      "imagenAlt": "Vista previa de una landing page",
-      "tags": ["Figma", "Bootstrap", "JavaScript"],
-      "urlSitio": "#",
+      "descripcion": "El rediseño de Papelería Divertida fue un proyecto académico enfocado en el rediseño visual y estructural del sitio web de Papelería Divertida. El objetivo principal fue modernizar la experiencia de navegación mediante una propuesta más clara, accesible y visualmente coherente, manteniendo la identidad colorida de la marca.",
+      "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Sin-titulo-scaled.jpg",
+      "imagenAlt": "Rediseño de Papelería Divertida",
+      "tags": ["CSS", "HTML", "SCSS"],
+      "urlSitio": "https://martinn2002.github.io/Papeleria-Divertida/",
       "urlCodigo": "#",
-      "contexto": "Una página de aterrizaje necesita explicar una propuesta sin perder al visitante.",
-      "publicoObjetivo": "Personas que llegan desde una campaña o recomendación.",
-      "objetivoProyecto": "Concentrar la información y facilitar una acción principal.",
-      "duracion": "Por definir",
-      "rol": "Diseño UX/UI y frontend",
-      "problemas": [],
-      "investigacion": [],
-      "desafios": [],
-      "galeria": []
+      "contexto": "Papelería Divertida Redesign fue un proyecto académico enfocado en el rediseño visual y estructural del sitio web de Papelería Divertida. El objetivo principal fue modernizar la experiencia de navegación mediante una propuesta más clara, accesible y visualmente coherente, manteniendo la identidad colorida y creativa de la marca.",
+      "publicoObjetivo": "Orientado a clientes de Papelería Divertida, principalmente estudiantes, personas interesadas en artículos de papelería y usuarios que buscaban una experiencia de compra más clara y agradable. También se buscó mantener una identidad visual amigable y creativa acorde al público de la marca.",
+      "objetivoProyecto": "Rediseñar la experiencia visual y estructural del sitio web de Papelería Divertida, mejorando la navegación, la legibilidad y la organización del contenido, manteniendo la identidad colorida y creativa de la marca.",
+      "duracion": "2 Meses",
+      "rol": "UX/UI Designer & Front-End Developer",
+      "problemas": [
+        { "titulo": "Problemas detectados", "texto": "El sitio original presentaba múltiples problemas de diseño que afectaban la experiencia de usuario, incluyendo tipografías difíciles de leer, textos integrados en imágenes, colores excesivamente intensos, imágenes de baja calidad y una navegación sobrecargada. La combinación de estos elementos generaba una interfaz confusa y poco accesible, dificultando la exploración del contenido.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/1440w-light-scaled.png" },
+        { "titulo": "Baja legibilidad", "texto": "El uso de tipografías poco claras y textos incrustados directamente en imágenes dificultaba la lectura y reducía la accesibilidad del contenido." },
+        { "titulo": "Jerarquía visual inconsistente", "texto": "La utilización de imágenes pixeladas y una combinación excesiva de colores provocaban una experiencia visual desordenada y poco coherente." },
+        { "titulo": "Navegación poco eficiente", "texto": "El menú principal mostraba una gran cantidad de categorías simultáneamente, ocupando gran parte de la pantalla y dificultando la orientación del usuario." }
+      ],
+      "investigacion": [
+        { "titulo": "Análisis del sitio original", "texto": "Se estudiaron problemas de navegación, legibilidad y organización visual presentes en el sitio existente." },
+        { "titulo": "Arquitectura de navegación", "texto": "Se desarrolló un nuevo mapa de navegación simplificando categorías y agrupando contenido mediante subcategorías más claras.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Mapa-navegacion-scaled.png" },
+        { "titulo": "Referencias visuales", "texto": "Se investigaron referencias de sitios relacionados con papelería, diseño editorial y tiendas creativas para definir una identidad visual más moderna y amigable.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Sin-titulo-scaled.webp" },
+        { "titulo": "Exploración de estilos", "texto": "El rediseño buscó mantener una identidad cálida y creativa mediante una estética basada en tonos pastel y composiciones visuales más limpias." },
+        { "titulo": "Desarrollo front-end", "texto": "El mockup fue desarrollado utilizando HTML, CSS y SCSS, incorporando navegación funcional, interacciones y animaciones visuales." }
+      ],
+      "desafios": [
+        { "problema": "El menú original mostraba demasiadas categorías simultáneamente, dificultando la orientación del usuario.", "solucion": "Se reorganizó el contenido en ocho categorías principales con subcategorías internas para mejorar la exploración." },
+        { "problema": "El contenido original presentaba problemas de lectura debido a tipografías y colores poco accesibles.", "solucion": "Se implementó una nueva jerarquía tipográfica y una paleta de colores pastel más controlada para mejorar claridad y coherencia visual." },
+        { "problema": "El sitio necesitaba transmitir una identidad más atractiva y contemporánea.", "solucion": "Se desarrolló un prototipo funcional con navegación real, animaciones e interacciones utilizando HTML, CSS y SCSS." }
+      ],
+      "galeria": [
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Sin-titulo-scaled.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/2.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/3.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/4.jpg"
+      ],
+      "conclusiones": "El resultado final fue un mockup navegable enfocado en mejorar la experiencia visual y estructural del sitio original de Papelería Divertida. El proyecto reorganizó completamente la navegación, mejoró la accesibilidad visual y estableció una identidad más coherente mediante una estética inspirada en tonos pastel y referencias editoriales relacionadas con papelería. Además, el desarrollo permitió profundizar conocimientos en CSS y SCSS mediante la construcción de una experiencia interactiva y funcional desde frontend."
     },
     {
-      "id": "proyecto-web-app",
-      "titulo": "Proyecto Web App",
-      "categoria": "Web Apps",
-      "descripcion": "Experiencia interactiva preparada para resolver una tarea concreta con una interfaz clara.",
-      "imagen": "assets/img/fondo-tecnologias.png",
-      "imagenAlt": "Fondo visual de la aplicación web",
-      "tags": ["JavaScript", "HTML", "CSS"],
-      "urlSitio": "#",
+      "id": "kid-cudi-blog",
+      "titulo": "Kid Cudi Blog",
+      "categoria": "CMS",
+      "descripcion": "Kid Cudi Blog fue un proyecto universitario desarrollado en WordPress con el objetivo de crear una plataforma informativa dedicada al artista Kid Cudi. El sitio buscaba centralizar noticias, eventos, discografía y contenido relacionado en una sola experiencia, acercando la música y la identidad de la artista a sus seguidores mediante una plataforma más completa y dinámica.",
+      "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/kidcudi-1-scaled.jpg",
+      "imagenAlt": "Kid Cudi Blog",
+      "tags": ["JSON", "PHP", "WordPress"],
+      "urlSitio": "https://martiperezb.laboratoriodiseno.cl/kidcudi/",
       "urlCodigo": "#",
-      "contexto": "Aplicación web centrada en una experiencia de uso sencilla.",
-      "publicoObjetivo": "Personas que necesitan completar una tarea de forma rápida.",
-      "objetivoProyecto": "Reducir la fricción y hacer visibles las acciones principales.",
-      "duracion": "Por definir",
-      "rol": "Desarrollo frontend",
-      "problemas": [],
-      "investigacion": [],
-      "desafios": [],
-      "galeria": []
+      "contexto": "Kid Cudi Blog fue un proyecto universitario desarrollado en WordPress con el objetivo de crear una plataforma informativa dedicada al artista Kid Cudi. El sitio buscaba centralizar noticias, eventos, discografía y contenido relacionado en una sola experiencia, acercando la música y la identidad de la artista a sus seguidores mediante una plataforma más completa y dinámica.",
+      "publicoObjetivo": "El proyecto estuvo orientado a seguidores de Kid Cudi interesados en acceder a noticias, eventos y contenido musical desde una plataforma centralizada y enfocada en la artista.",
+      "objetivoProyecto": "Desarrollar una plataforma dedicada a Kid Cudi capaz de reunir noticias, eventos y discografía en una experiencia unificada, combinando WordPress con estructuras de datos personalizadas.",
+      "duracion": "2 Meses",
+      "rol": "WordPress Developer & PHP Developer",
+      "problemas": [
+        { "titulo": "Información dispersa entre múltiples plataformas", "texto": "El contenido relacionado con el artista se encontraba distribuido entre distintas plataformas externas, dificultando la experiencia de los usuarios y limitando la posibilidad de ofrecer una identidad digital más completa.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/kidcudi-original.jpg" },
+        { "titulo": "Falta de contenido editorial", "texto": "El sitio original ofrecía una experiencia limitada, sin noticias ni información adicional sobre la trayectoria de la artista." },
+        { "titulo": "Gestión de eventos", "texto": "Era necesario mostrar eventos con información variable como precios, disponibilidad y enlaces externos de compra." },
+        { "titulo": "Integración de contenido musical", "texto": "El proyecto requería presentar álbumes, canciones y colaboraciones de forma estructurada e integrada con plataformas externas." }
+      ],
+      "investigacion": [
+        { "titulo": "Sitio oficial de Kid Cudi", "texto": "Se analizó el sitio original para identificar sus limitaciones y las oportunidades de expansión en experiencia de usuario y contenido.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/kidcudi-original.jpg" },
+        { "titulo": "Plataformas musicales", "texto": "Se investigó la integración de Spotify para complementar la experiencia de navegación mediante contenido multimedia.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/embed.jpg" },
+        { "titulo": "Arquitectura híbrida de contenido", "texto": "Se evaluó la combinación entre información estructurada mediante JSON y contenido administrado desde WordPress." },
+        { "titulo": "Sistema de eventos dinámicos", "texto": "Se investigó el uso de Custom Post Types para administrar información específica de eventos y distintos tipos de entradas." },
+        { "titulo": "Referentes de sitios musicales", "texto": "Se analizaron páginas de artistas y medios relacionados con música para comprender cómo estructurar contenido editorial y discografías." }
+      ],
+      "desafios": [
+        { "problema": "El proyecto necesitaba manejar álbumes, canciones, artistas invitados y contenido multimedia manteniendo una estructura reutilizable.", "solucion": "Se desarrolló una estructura JSON personalizada para almacenar toda la información de la discografía, incluyendo los embeds de Spotify integrados dinámicamente en el frontend." },
+        { "problema": "Cada evento necesitaba mostrar múltiples opciones de acceso con precios y categorías variables.", "solucion": "Se implementaron Custom Post Types para registrar distintos tipos de entradas y asociarlos dinámicamente a cada evento." },
+        { "problema": "El sitio original ofrecía una experiencia limitada y dependía principalmente de enlaces externos.", "solucion": "Se diseñó una experiencia que reunía noticias, eventos, discografía y contenido multimedia en un solo lugar." }
+      ],
+      "galeria": [
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/kidcudi-1-scaled.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/kidcudi-2.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/kidcudi-6.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/kidcudi-3.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/kidcudi-4.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/kidcudi-5.jpg"
+      ],
+      "conclusiones": "El resultado final fue una plataforma informativa desarrollada con WordPress, PHP y estructuras JSON personalizadas. El proyecto combinó contenido administrado mediante posts y Custom Post Types junto con datos musicales estructurados manualmente en JSON, permitiendo mostrar discografías completas, canciones, colaboraciones y contenido multimedia integrado desde Spotify. Además, el sistema de eventos permitió administrar distintos tipos de entradas y redirigir a plataformas externas de compra, manteniendo el sitio enfocado en difusión y experiencia de usuario."
+    },
+    {
+      "id": "statspurs",
+      "titulo": "StatSpurs",
+      "categoria": "CMS",
+      "descripcion": "StatSpurs fue un proyecto universitario desarrollado durante el aprendizaje de WordPress y manejo de bases de datos mediante posts y custom post types. El sitio nace desde la idea de acercar contenido del Tottenham Hotspur a la comunidad hispanohablante, tomando inspiración de medios y creadores de contenido ingleses enfocados en el club. El proyecto evolucionó hacia una plataforma estilo blog, capaz de registrar resultados, alineaciones, estadísticas y resúmenes de partidos de manera dinámica.",
+      "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Statspurs-1.jpg",
+      "imagenAlt": "StatSpurs",
+      "tags": ["Custom Posts", "PHP", "WordPress"],
+      "urlSitio": "http://martiperezb.laboratoriodiseno.cl/wpduoc/",
+      "urlCodigo": "#",
+      "contexto": "StatSpurs fue un proyecto universitario desarrollado durante el aprendizaje de WordPress y manejo de bases de datos mediante posts y custom post types. El sitio nace desde la idea de acercar contenido del Tottenham Hotspur a la comunidad hispanohablante, tomando inspiración de medios y creadores de contenido ingleses enfocados en el club. El proyecto evolucionó hacia una plataforma estilo blog, capaz de registrar resultados, alineaciones, estadísticas y resúmenes de partidos de manera dinámica.",
+      "publicoObjetivo": "El proyecto estuvo orientado a aficionados hispanohablantes del Tottenham Hotspur que consumen noticias, resultados y contenido relacionado con el club, pero que cuentan con pocas alternativas especializadas fuera del contenido en inglés.",
+      "objetivoProyecto": "Desarrollar una plataforma de contenido enfocada en el Tottenham Hotspur que permitiera registrar y presentar resultados, alineaciones y resúmenes de partidos mediante una estructura dinámica basada en WordPress y custom post types.",
+      "duracion": "2 Meses",
+      "rol": "Content Designer & WordPress Developer",
+      "problemas": [
+        { "titulo": "Escasez de contenido del Tottenham Hotspur en español", "texto": "La mayoría del contenido consumido por aficionados del club se encontraba principalmente en inglés, dificultando el acceso a información especializada para usuarios hispanohablantes y limitando la existencia de espacios dedicados exclusivamente al Tottenham Hotspur.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Sitio-original.jpg" },
+        { "titulo": "Gestión repetitiva de partidos", "texto": "Registrar manualmente información detallada utilizando únicamente posts tradicionales hacía el flujo de trabajo poco dinámico y difícil de mantener." },
+        { "titulo": "Organización de datos deportivos", "texto": "El proyecto requería almacenar información específica como titulares, sustituciones y resultados sin perder estructura ni escalabilidad." },
+        { "titulo": "Mantener una identidad visual reconocible", "texto": "Era importante transmitir una estética cercana al Tottenham Hotspur manteniendo una identidad propia para el proyecto." }
+      ],
+      "investigacion": [
+        { "titulo": "Referentes de contenido deportivo", "texto": "Se investigaron sitios y creadores de contenido relacionados con comunidades de aficionados, especialmente medios dedicados al Tottenham Hotspur.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Spursweb-scaled.jpg" },
+        { "titulo": "Sitio oficial del Tottenham Hotspur", "texto": "Se analizaron colores, estructura visual y composición del sitio oficial para construir una identidad inspirada en el club.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/image-3-scaled.png" },
+        { "titulo": "Sistema de posts en WordPress", "texto": "Se exploró el funcionamiento de WordPress y su relación con la gestión de contenido dinámico mediante posts." },
+        { "titulo": "Uso de Custom Post Types", "texto": "Se investigó cómo utilizar custom post types para registrar información específica de partidos y jugadores de forma más organizada.", "imagen": "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Statspurs-5-scaled.jpg" },
+        { "titulo": "Integración de contenido multimedia", "texto": "Se evaluó la incorporación de resúmenes visuales mediante videos de YouTube para complementar la experiencia de lectura." }
+      ],
+      "desafios": [
+        { "problema": "El sitio necesitaba manejar múltiples datos por encuentro, incluyendo alineaciones, sustituciones y resultados sin volver confusa la administración.", "solucion": "Se implementaron custom post types para estructurar la información de cada partido, facilitando la actualización y escalabilidad del proyecto." },
+        { "problema": "El proyecto buscaba transmitir la esencia visual del Tottenham Hotspur sin depender directamente de recursos oficiales.", "solucion": "Se utilizaron colores, composiciones y una tipografía similar a la empleada por el club para construir una experiencia coherente y familiar para los usuarios." },
+        { "problema": "Los resúmenes escritos podían resultar limitados para representar completamente cada partido.", "solucion": "Cada publicación incorporaba un resumen visual en video proveniente de YouTube para enriquecer la experiencia informativa." }
+      ],
+      "galeria": [
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Statspurs-1.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Statspurs-1-1-scaled.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Statspurs-2.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Statspurs-3.jpg",
+        "https://martiperezb.laboratoriodiseno.cl/portafolio/wp-content/uploads/2026/06/Statspurs-4.jpg"
+      ],
+      "conclusiones": "El resultado final fue una plataforma estilo blog enfocada en el Tottenham Hotspur, desarrollada con WordPress y orientada a usuarios hispanohablantes. El sitio permitió registrar resultados, alineaciones, cambios y resúmenes de partidos mediante un sistema dinámico basado en custom post types, mejorando tanto la organización del contenido como la experiencia de administración. Visualmente, el proyecto tomó inspiración del sitio oficial del club para construir una experiencia reconocible y coherente con la identidad del equipo, incorporando además contenido audiovisual para enriquecer cada publicación."
     }
   ]
 }
