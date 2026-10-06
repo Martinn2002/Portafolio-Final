@@ -714,12 +714,29 @@ button {
 // ── MIGRACIÓN ESTÁTICA ─────────────────────────────
 .enlace-tarjeta-proyecto {
   display: block;
+  height: 100%;
   color: inherit;
   text-decoration: none;
 
   &:hover {
     color: inherit;
   }
+}
+
+.enlace-tarjeta-proyecto .tarjeta-proyecto {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.enlace-tarjeta-proyecto .texto-tarjeta-proyecto {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.enlace-tarjeta-proyecto .link-flecha {
+  margin-top: auto;
 }
 
 .panel-tecnologias[hidden] {
