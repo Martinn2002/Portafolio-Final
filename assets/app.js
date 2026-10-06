@@ -141,7 +141,81 @@ document.addEventListener('DOMContentLoaded', () => {
     renderizarProyectos();
     renderizarTecnologias();
     renderizarDetalle();
+    renderizarPluginsDetalle();
     const btnMenu = document.querySelector('.btn-menu');
     const nav = document.querySelector('.header-inner nav');
     btnMenu?.addEventListener('click', () => { const abierto = nav.classList.toggle('abierto'); btnMenu.classList.toggle('abierto', abierto); btnMenu.setAttribute('aria-expanded', abierto); });
 });
+
+
+const renderizarPluginsDetalle = async () => {
+    const contenedor = document.querySelector('[data-detalle-proyecto]');
+    if (!contenedor) return;
+
+    try {
+        const datos = await cargarJSON('data/proyectos.json');
+        const id = new URLSearchParams(window.location.search).get('id');
+        const proyecto = (datos.proyectos || []).find((item) => item.id === id) || datos.proyectos?.[0];
+        if (!proyecto) return;
+
+        const crearSlideInformativo = (item, indice) => `
+            <div class="swiper-slide ${item.imagen ? 'slide-con-imagen' : ''}">
+                <article class="tarjeta-proyecto ${item.imagen ? 'd-flex flex-row align-items-start gap-4' : ''}">
+                    <div class="texto-tarjeta-problemas ${item.imagen ? 'orden-texto' : ''}">
+                        <div class="titulo-problema d-flex align-items-center gap-2 mb-3">
+                            <span class="numero-problema">${indice + 1}</span>
+                            <p class="subtitulo mb-0">${escapeHTML(item.titulo)}</p>
+                        </div>
+                        <p class="p-mediano">${escapeHTML(item.texto)}</p>
+                    </div>
+                    ${item.imagen ? `<a href="${escapeHTML(item.imagen)}" class="lightbox-img orden-imagen"><img src="${escapeHTML(item.imagen)}" alt="${escapeHTML(item.titulo)}" class="img-problema"></a>` : ''}
+                </article>
+            </div>`;
+
+        const secciones = [];
+        if (proyecto.problemas?.length) {
+            secciones.push(`<section class="row mt-4"><h2>Problemas visuales</h2><div class="swiper problemas-slider"><div class="swiper-wrapper">${proyecto.problemas.map(crearSlideInformativo).join('')}</div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div></section>`);
+        }
+        if (proyecto.investigacion?.length) {
+            secciones.push(`<section class="row mt-4"><h2>Material de investigación</h2><div class="swiper problemas-slider"><div class="swiper-wrapper">${proyecto.investigacion.map(crearSlideInformativo).join('')}</div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div></section>`);
+        }
+        if (proyecto.galeria?.length) {
+            secciones.push(`<section class="row mt-4"><h2>Resultado final</h2><div class="swiper galeria-proyecto-slider"><div class="swiper-wrapper">${proyecto.galeria.map((imagen, indice) => `<div class="swiper-slide"><a href="${escapeHTML(imagen)}" class="lightbox-img"><img src="${escapeHTML(imagen)}" alt="${escapeHTML(proyecto.titulo)} · imagen ${indice + 1}"></a></div>`).join('')}</div><div class="swiper-pagination"></div></div></section>`);
+        }
+        if (proyecto.conclusiones) {
+            secciones.push(`<section class="row mt-4"><div class="col-md-7"><h2>Conclusiones</h2><p>${escapeHTML(proyecto.conclusiones)}</p></div></section>`);
+        }
+        contenedor.insertAdjacentHTML('beforeend', secciones.join(''));
+
+        if (window.Swiper) {
+            document.querySelectorAll('.problemas-slider').forEach((slider) => {
+                new Swiper(slider, {
+                    slidesPerView: 'auto',
+                    spaceBetween: 30,
+                    loop: false,
+                    navigation: {
+                        nextEl: slider.querySelector('.swiper-button-next'),
+                        prevEl: slider.querySelector('.swiper-button-prev')
+                    },
+                    breakpoints: { 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } }
+                });
+            });
+            const galeria = document.querySelector('.galeria-proyecto-slider');
+            if (galeria) {
+                new Swiper(galeria, {
+                    effect: 'coverflow',
+                    centeredSlides: true,
+                    loop: false,
+                    grabCursor: true,
+                    autoHeight: true,
+                    slidesPerView: 'auto',
+                    coverflowEffect: { rotate: 0, stretch: 0, depth: 200, modifier: 1.5, scale: 0.9, slideShadows: true },
+                    pagination: { el: galeria.querySelector('.swiper-pagination'), clickable: true }
+                });
+            }
+        }
+        if (window.GLightbox) GLightbox({ selector: '.lightbox-img' });
+    } catch (error) {
+        console.error('No se pudieron cargar los plugins del detalle:', error);
+    }
+};
